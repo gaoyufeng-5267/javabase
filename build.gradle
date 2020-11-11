@@ -1,0 +1,61 @@
+
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.72'
+//    id("org.springframework.boot") version "2.1.5.RELEASE"
+    id("io.spring.dependency-management") version "1.0.6.RELEASE"
+
+}
+ext {
+    springBootVersion = '2.1.5.RELEASE'
+}
+group 'jp.co.tlzs.weget'
+version '1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+    }
+}
+
+tasks {
+    compileJava {
+        dependsOn(processResources)
+    }
+}
+repositories {
+    mavenCentral()
+}
+
+//apply plugin: 'kotlin'
+//apply plugin: 'kotlin-spring'
+sourceCompatibility = 1.8
+
+//apply plugin: 'java-library'
+
+dependencies {
+
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+//    api "org.springframework.boot:spring-boot-starter-actuator"
+//    implementation "org.springframework.boot:spring-boot-starter-webflux"
+//    implementation "io.micrometer:micrometer-registry-prometheus"
+    api "org.springframework.boot:spring-boot-starter-data-redis-reactive"
+    api "org.springframework.boot:spring-boot-starter-json"
+    api "org.springframework.boot:spring-boot-starter-data-jpa"
+    api "javax.xml.bind:jaxb-api:2.3.0"
+
+    // use lombok
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
+
+    runtime('org.postgresql:postgresql')
+    implementation "org.apache.kafka:kafka-streams:2.4.0"
+    implementation "org.springframework.kafka:spring-kafka"
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
