@@ -14,4 +14,6 @@ import javax.persistence.Embeddable;
 public class User {
     private String name;
     private String type;
+
+
 }

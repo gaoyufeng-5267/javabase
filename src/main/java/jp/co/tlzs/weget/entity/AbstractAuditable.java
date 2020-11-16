@@ -15,28 +15,33 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 abstract class AbstractAuditable {
 
-    @Column(name = "is_deleted")
-    private boolean deleted;
+//    @Column(name = "is_deleted")
+//    private boolean deleted;
 
-    @Version
-    @Column(name = "record_version")
+//    @Version
+//    @Column(name = "record_version")
+@Column(nullable=false)
     protected Long version;
 
-    @CreatedBy
-    @AttributeOverride(name = "name", column = @Column(name = "creator_name"))
-    @AttributeOverride(name = "type", column = @Column(name = "creator_kind"))
-    private User createBy;
+//    @CreatedBy
+//    @AttributeOverride(name = "name", column = @Column(name = "creator_name"))
+//    @AttributeOverride(name = "type", column = @Column(name = "creator_kind"))
+@Column(nullable=false)
+    private String createUser;
 
-    @CreatedDate
-    @Column(name = "create_datetime")
-    private LocalDateTime createDate;
+//    @CreatedDate
+//    @Column(name = "create_datetime")
+@Column(nullable=false)
+    private LocalDateTime createTime;
 
-    @LastModifiedBy
-    @AttributeOverride(name = "name", column = @Column(name = "updater_name"))
-    @AttributeOverride(name = "type", column = @Column(name = "updater_kind"))
-    private User updateBy;
+//    @LastModifiedBy
+//    @AttributeOverride(name = "name", column = @Column(name = "updater_name"))
+//    @AttributeOverride(name = "type", column = @Column(name = "updater_kind"))
+@Column(nullable=false)
+    private String updateUser;
 
-    @LastModifiedDate
-    @Column(name = "update_datetime")
-    private LocalDateTime updateDate;
+//    @LastModifiedDate
+//    @Column(name = "update_datetime")
+@Column(nullable=false)
+    private LocalDateTime updateTime;
 }

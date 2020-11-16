@@ -5,14 +5,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 public class Auth {
 
     String id;
     String accountId;
     String agent;
     boolean status;
+    public Auth(String id,
+            String accountId,
+            String agent,
+            boolean status){
+        this.id= id;
+        this.accountId = accountId;
+        this.agent = agent;
+        this.status = status;
+
+    }
     public String getId() {
         return id;
     }
